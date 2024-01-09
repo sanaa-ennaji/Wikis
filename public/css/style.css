@@ -1,0 +1,49 @@
+
+.navbar {
+    background-color: #FF69B4; 
+    padding-bottom: 4px;
+    padding-top: 15px;
+}
+
+.navbar-brand {
+    color: #8A2BE2; 
+    padding-top: 2px;
+   font-style: bold;
+    
+}
+
+.navbar-brand:hover {
+    color: #800080; 
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #8A2BE2;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+}
+
+.navbar-nav .nav-link {
+    color: #8A2BE2;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #800080;
+}
+
+.btn-login,
+.btn-register {
+    background-color: #800080;
+    border-color: #800080;
+    color: #FFFFFF;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    background-color: #4B0082; 
+    border-color: #4B0082;
+    color: #FFFFFF;
+
+}

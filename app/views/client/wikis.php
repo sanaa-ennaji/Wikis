@@ -4,6 +4,6 @@
 
 
 
- 
+ <?php  include APPROOT .'/views/incfilesClient/footer.php'  ?>  
 </body>
 </html>
