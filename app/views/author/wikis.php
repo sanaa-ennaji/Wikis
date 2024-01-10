@@ -148,16 +148,16 @@
 
 
 <?php
-//  include APPROOT . '/views/incfilesClient/head.php' 
+//  include APPROOT . '/views/incfilesauthor/head.php' 
   ?>
 
  <?php  
-//  include APPROOT .'/views/incfilesClient/navbar.php'  
+//  include APPROOT .'/views/incfilesauthor/navbar.php'  
  ?>   
 
 
 
  <?php  
-//  include APPROOT .'/views/incfilesClient/footer.php'
+//  include APPROOT .'/views/incfilesauthor/footer.php'
    ?>  
 

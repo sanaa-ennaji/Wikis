@@ -1,19 +1,12 @@
 <?php
 class User extends Controller{
     public function wikis() {
-       $this->view('client/wikis');
+       $this->view('author/wikis');
     }
     public function tags(){
-        $this->view('client/tags');
+        $this->view('author/tags');
     }
 }
-
-
-
-
-
-
-
 
 
 ?>
