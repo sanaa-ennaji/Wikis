@@ -2,7 +2,6 @@
 
 class UserService implements InterfaceUser
 {
-
     private $db;
 
     public function __construct()
@@ -12,20 +11,32 @@ class UserService implements InterfaceUser
 
     public function createUser($nom, $email, $pass, $role = 'author')
     {
-        $createUserQuery = "INSERT INTO users (nom, email, pass, role) VALUES (:nom, :email, :pass, :role)";
+        $createUserQuery = "INSERT INTO users (name_user, email, mot_de_passe, role) VALUES (:nom, :email, :pass, :role)";
         $this->db->query($createUserQuery);
         $this->db->bind(":nom", $nom);
         $this->db->bind(":email", $email);
-        $this->db->bind(":pass", $pass);
+        $this->db->bind(":pass", password_hash($pass, PASSWORD_DEFAULT));
         $this->db->bind(":role", $role);
 
         try {
             $this->db->execute();
-            return $this->getUserByEmail($email); 
+            return $this->getUserByEmail($email);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
+
+    public function registerAuthor($nom, $email, $pass)
+    {
+       
+        return $this->createUser($nom, $email, $pass, 'author');
+    }
+
+    // public function registerAdmin($nom, $email, $pass)
+    // {
+       
+    //     return $this->createUser($nom, $email, $pass, 'admin');
+    // }
 
     public function getUserById($id)
     {
@@ -42,12 +53,12 @@ class UserService implements InterfaceUser
 
     public function updateUser($id, $nom, $email, $pass, $role)
     {
-        $updateUserQuery = "UPDATE users SET nom = :nom, email = :email, pass = :pass, role = :role WHERE id_user = :id";
+        $updateUserQuery = "UPDATE users SET name_user = :nom, email = :email, mot_de_passe = :pass, role = :role WHERE id_user = :id";
         $this->db->query($updateUserQuery);
         $this->db->bind(":id", $id);
         $this->db->bind(":nom", $nom);
         $this->db->bind(":email", $email);
-        $this->db->bind(":pass", $pass);
+        $this->db->bind(":pass", password_hash($pass, PASSWORD_DEFAULT)); 
         $this->db->bind(":role", $role);
 
         try {
@@ -66,7 +77,7 @@ class UserService implements InterfaceUser
 
         try {
             $this->db->execute();
-            return true; 
+            return true;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -84,6 +95,19 @@ class UserService implements InterfaceUser
             die($e->getMessage());
         }
     }
+
+    public function login($email, $pass)
+    {
+        $user = $this->getUserByEmail($email);
+
+        if ($user && password_verify($pass, $user['mot_de_passe'])) {
+          
+            return $user;
+        } else {
+          
+            return null;
+        }
+    }
 }
-   
+
 ?>
