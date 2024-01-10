@@ -1,4 +1,3 @@
-
 <?php
 
 class ServiceTag implements InterfaceTag{
@@ -16,7 +15,7 @@ class ServiceTag implements InterfaceTag{
 
         try {
             $this->db->execute();
-            return $this->getTagById($this->db->lastInsertId());
+            return $this->getTagById($nom_tag);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -74,6 +73,3 @@ class ServiceTag implements InterfaceTag{
 }
 
 ?>
-
-
-

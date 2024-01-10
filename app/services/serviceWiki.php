@@ -5,7 +5,7 @@ class ServiceWiki implements InterfaceWiki {
 
     public function __construct()
     {
-        $this->db = Database::getInstance(); // Assuming you have a Database class for database operations.
+        $this->db = Database::getInstance(); 
     }
 
     public function createWiki($titre, $contenu, $image_url, $id_auteur, $id_categorie) {
@@ -19,7 +19,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return $this->getWikiById($this->db->lastInsertId()); // Return the newly created wiki
+            return $this->getWikiById($this->db->lastInsertId());
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -49,7 +49,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return $this->getWikiById($id); // Return the updated wiki
+            return $this->getWikiById($id); 
         } catch (PDOException $e) {
             die($e->getMessage());
         }

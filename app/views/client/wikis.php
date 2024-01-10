@@ -13,16 +13,61 @@
             height: 100vh;
             background: rgb(34, 193, 195);
             background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(226, 45, 253, 1) 100%);
-            .modal{
-                height: 70%;
-                /* background-color: blueviolet; */
-            }
-        }
+           
+.navbar {
+    background-color: #FF69B4; 
+    padding-bottom: 4px;
+    padding-top: 15px;
+}
+
+.navbar-brand {
+    color: #8A2BE2; 
+    padding-top: 2px;
+   font-style: bold;
+    
+}
+
+.navbar-brand:hover {
+    color: #800080; 
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #8A2BE2;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+}
+
+.navbar-nav .nav-link {
+    color: #8A2BE2;
+}
+.navbar-nav .nav-link:hover {
+    color: #800080;
+}
+
+.btn-login,
+.btn-register {
+    background-color: #800080;
+    border-color: #800080;
+    color: #FFFFFF;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    background-color: #4B0082; 
+    border-color: #4B0082;
+    color: #FFFFFF;
+
+} 
+   }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
+    <img src="<?= URLROOT . 'public/img/w.png'?>" class="img-fluid" alt="Phone image"width="5%" >
         <a class="navbar-brand" href="#">Wikis</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +125,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
+    <!-- Your other scripts go here -->
     <script src="<?= URLROOT ?>js/wikis.js"></script>
 </body>
 </html>
