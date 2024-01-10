@@ -19,7 +19,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return $this->getWikiById($this->db->lastInsertId());
+            return $this->getWikiById($id_categorie);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -62,7 +62,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return true; // Return true for successful deletion
+            return true;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

@@ -15,7 +15,7 @@ class ServiceCategory implements  InterfaceCategory {
 
         try {
             $this->db->execute();
-            return $this->getCategoryById($this->db->lastInsertId()); 
+            return $this->getCategoryById($nom_categorie); 
         } catch (PDOException $e) {
             die($e->getMessage());
         }

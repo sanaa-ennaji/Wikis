@@ -6,7 +6,6 @@ class Admin extends Controller
     {
 
     }
-
     public function wikis(){
         $this->view('admin/wikiad');
     }
@@ -17,4 +16,5 @@ class Admin extends Controller
     public function category(){
         $this->view('admin/categoryad');
         }
+   
 }
