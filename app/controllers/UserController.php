@@ -66,39 +66,34 @@ class UserController {
     public function getAllUsers() {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $users = $this->userService->getAllUsers();
-            header('Content-Type: application/json');
             echo json_encode(['data' => $users]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
         }
     }
-
 }
-
 
 $userController = new UserController();
 
-if (isset($_POST['action'])) {
-    switch ($_POST['action']) {
-        case 'register':
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action'])) {
+        if ($_POST['action'] === 'register') {
             $userController->registerUser();
-            break;
-        case 'login':
+        } elseif ($_POST['action'] === 'login') {
             $userController->loginUser();
-            break;
-            // case 'getAllUsers':
-            //     $userController->getAllUsers();
-            //     break;
-        default:
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid action']);
+        }
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Action not specified']);
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['getAllUsers'])) {
+        $userController->getAllUsers();
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid action']);
     }
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Action not specified']);
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
-
-
-
-
-
-
 ?>

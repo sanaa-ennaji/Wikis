@@ -18,6 +18,7 @@
 </head>
 <body>
 
+
 <div class="container mt-5">
     <h2>User List</h2>
     <table id="userTable" class="table table-striped">
@@ -39,7 +40,7 @@
     $(document).ready(function() {
         // Initialize DataTable
         $('#userTable').DataTable({
-            ajax: '../controllers/UserController.php', // Replace with the endpoint to fetch user data
+            ajax: '../controllers/UserController.php?getAllUsers', // Replace with the endpoint to fetch user data
             columns: [
                 { data: 'id_user' },
                 { data: 'name_user' },
