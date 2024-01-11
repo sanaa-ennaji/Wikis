@@ -1,44 +1,37 @@
+$(document).ready(function () {
+    $("#registerForm").submit(function (event) {
+        event.preventDefault();
 
-function registerUser(nom, email, pass, role) {
-    $.ajax({
-        url: 'http://localhost/wikis/user/login',
-        type: 'POST',
-        dataType: 'json',
-        data: JSON.stringify({ nom, email, pass, role }),
-        success: function (response) {
-            if (response.success) {
+        $.ajax({
+            type: "POST",
+            url: "app/controllers/User.php",
+            data: $("#registerForm").serialize() + "&action=register",
+            success: function (response) {
+                console.log(response);
                
-                console.log('Registration successful', response.user);
-            } else {
-               
-                console.error('Registration failed', response.message);
+            },
+            error: function (error) {
+                console.error(error);
             }
-        },
-        error: function (xhr, status, error) {
-          
-            console.error('AJAX error:', status, error);
-        }
+        });
     });
-}
 
-function loginUser(email, pass) {
-    $.ajax({
-        url: 'http://localhost/wikis/user/login',
-        type: 'POST',
-        dataType: 'json',
-        data: JSON.stringify({ email, pass }),
-        success: function (response) {
-            if (response.success) {
+    $("#loginForm").submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "../app/controllers/User.php",
+            data: $("#loginForm").serialize() + "&action=login",
+            success: function (response) {
+                console.log(response);
                 
-                console.log('Login successful', response.user);
-            } else {
-           
-                console.error('Login failed', response.message);
+            },
+            error: function (error) {
+                console.error(error);
             }
-        },
-        error: function (xhr, status, error) {
-            
-            console.error('AJAX error:', status, error);
-        }
+        });
     });
-}
+});
+
+
