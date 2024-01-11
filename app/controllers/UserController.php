@@ -61,6 +61,18 @@ class UserController {
         }
     }
 
+    
+
+    public function getAllUsers() {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $users = $this->userService->getAllUsers();
+            header('Content-Type: application/json');
+            echo json_encode(['data' => $users]);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
+
 }
 
 
@@ -74,11 +86,19 @@ if (isset($_POST['action'])) {
         case 'login':
             $userController->loginUser();
             break;
+            // case 'getAllUsers':
+            //     $userController->getAllUsers();
+            //     break;
         default:
             echo json_encode(['status' => 'error', 'message' => 'Invalid action']);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Action not specified']);
 }
+
+
+
+
+
 
 ?>

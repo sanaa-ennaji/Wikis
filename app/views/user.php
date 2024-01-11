@@ -30,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- User data will be populated here -->
+        
         </tbody>
     </table>
 </div>
