@@ -45,7 +45,6 @@ class WikiController {
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $id = $_GET['id'];
 
-        // Call the wiki service to get the wiki by ID
         $wiki = $this->wikiService->getWikiById($id);
 
         if ($wiki) {
