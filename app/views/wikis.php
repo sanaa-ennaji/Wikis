@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php  require_once '../controllers/CategoryController.php'; ?>
+<?php  require_once '../controllers/WikiController.php'; ?>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +15,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
 </head>
 <body>
 
@@ -36,7 +42,7 @@
     </table>
 </div>
 
-<!-- Add Wiki Modal -->
+
 <div class="modal" id="addWikiModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -46,64 +52,151 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <!-- Form for adding a new wiki -->
+            
                 <form id="addWikiForm">
-                    <!-- Add your input fields for title, content, etc. -->
+                    <div class="form-group">
+                        <label for="wikiTitle">Wiki Title</label>
+                        <input type="text" class="form-control" id="wikiTitle" name="wikiTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="wikiContent">Wiki Content</label>
+                        <textarea class="form-control" id="wikiContent" name="wikiContent" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="categorySelect">Select Category</label>
+                        <select class="form-control" id="categorySelect" name="categorySelect" required>
+                            <?php
+                               
+                                $categoriesData = json_decode($categoryController->getAllCategories(),true);
+
+                                if ($categoriesData['status'] === 'success') {
+                                    foreach ($categoriesData['data'] as $category) {
+                                        echo '<option value="' . $category['id_categorie'] . '">' . $category['nom_categorie'] . '</option>';
+                                    }
+                                } else {
+                                    echo '<option value="">No categories available</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add Wiki</button>
-                </form>
+                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Include scripts for WikiController.js and Bootstrap JS -->
-<script src="WikiController.js"></script>
+
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>$(document).ready(function() {
-    // Initialize DataTable
-    var wikiTable = $('#wikiTable').DataTable({
-        ajax: 'WikiController.php?getAllWikis',
-        columns: [
-            { data: 'id_wiki' },
-            { data: 'titre' },
-            { data: 'contenu' },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return '<button onclick="editWiki(' + row.id_wiki + ')">Edit</button>' +
-                           '<button onclick="deleteWiki(' + row.id_wiki + ')">Delete</button>';
-                }
+
+
+<script>
+
+
+$('#addWikiForm').submit(function(event) {
+    event.preventDefault();
+
+    // Get data from the form
+    var wikiTitle = $('#wikiTitle').val();
+    var wikiContent = $('#wikiContent').val(); 
+    var selectedCategory = $('#categorySelect').val();
+
+    // Implement your logic to add a wiki using AJAX
+    $.ajax({
+        url: '../controllers/WikiController.php?createWiki',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            action: 'createWiki',
+            titre: wikiTitle,
+            contenu: wikiContent,
+            id_categorie: selectedCategory
+            // Add more data fields as needed
+        },
+        success: function(response) {
+            if (response.status === 'success') {
+                // Wiki added successfully
+                console.log(response.message);
+
+                // Close the modal
+                $('#addWikiModal').modal('hide');
+
+                // Reload DataTable to update the table
+                wikiTable.ajax.reload();
+            } else {
+                // Handle errors if needed
+                console.error(response.message);
             }
-        ]
+        },
+        error: function(xhr, status, error) {
+            // Handle AJAX errors
+            console.error(error);
+        }
     });
-
-    // Add Wiki Form Submission
-    $('#addWikiForm').submit(function(event) {
-        event.preventDefault();
-
-        // Get data from the form and implement logic to add a wiki using AJAX
-        // ...
-
-        // Close the modal
-        $('#addWikiModal').modal('hide');
-
-        // Reload DataTable to update the table
-        wikiTable.ajax.reload();
-    });
-
-    // Function to edit a wiki
-    window.editWiki = function(id) {
-        // Implement your edit logic here
-        console.log('Edit wiki with ID: ' + id);
-    };
-
-    // Function to delete a wiki
-    window.deleteWiki = function(id) {
-        // Implement your delete logic here
-        console.log('Delete wiki with ID: ' + id);
-    };
 });
+
+// Function to edit a wiki
+window.editWiki = function(id) {
+    // Assuming you have a modal for editing wikis with the ID "editWikiModal"
+    $('#editWikiModal').modal('show');
+
+    // Fetch the existing data for the wiki with the specified ID using AJAX
+    $.ajax({
+        url: '../controllers/WikiController.php?getWikiById', // Adjust the endpoint accordingly
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            id: id
+        },
+        success: function(response) {
+            if (response.status === 'success') {
+                // Assuming you have input fields in your edit modal with IDs "editWikiTitle" and "editWikiContent"
+                $('#editWikiTitle').val(response.data.titre);
+                $('#editWikiContent').val(response.data.contenu);
+                // Populate other fields as needed
+            } else {
+                // Handle errors if needed
+                console.error(response.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle AJAX errors
+            console.error(error);
+        }
+    });
+};
+
+// Function to delete a wiki
+window.deleteWiki = function(id) {
+    // Show a confirmation modal
+    if (confirm('Are you sure you want to delete this wiki?')) {
+        // Implement your delete logic here
+        $.ajax({
+            url: '../controllers/WikiController.php?deleteWiki', // Adjust the endpoint accordingly
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    // Assuming you have a DataTable for wikis with the variable name "wikiTable"
+                    // Reload DataTable to update the table
+                    wikiTable.ajax.reload();
+                } else {
+                    // Handle errors if needed
+                    console.error(response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle AJAX errors
+                console.error(error);
+            }
+        });
+    }
+};
+
 </script>
 </body>
 </html>

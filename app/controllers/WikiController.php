@@ -21,8 +21,6 @@ class WikiController {
                 echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
                 return;
             }
-
-            // Call the wiki service to create the wiki
             $wiki = $this->wikiService->createWiki($titre, $contenu, $image_url, $id_auteur, $id_categorie);
 
             if ($wiki) {
@@ -37,7 +35,7 @@ class WikiController {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
             $id = $_GET['id'];
 
-            // Call the wiki service to get the wiki by ID
+            
             $wiki = $this->wikiService->getWikiById($id);
 
             if ($wiki) {
@@ -50,7 +48,6 @@ class WikiController {
 
     public function updateWiki() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate input (you can add more validation as needed)
             $id = $_POST['id'];
             $titre = $_POST['titre'];
             $contenu = $_POST['contenu'];
@@ -63,7 +60,6 @@ class WikiController {
                 return;
             }
     
-            // Call the wiki service to update the wiki
             $wiki = $this->wikiService->updateWiki($id, $titre, $contenu, $image_url, $id_auteur, $id_categorie);
     
             if ($wiki) {
@@ -76,7 +72,7 @@ class WikiController {
     
     public function deleteWiki() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate input (you can add more validation as needed)
+           
             $id = $_POST['id'];
     
             if (empty($id)) {
@@ -84,7 +80,7 @@ class WikiController {
                 return;
             }
     
-            // Call the wiki service to delete the wiki
+           
             $result = $this->wikiService->deleteWiki($id);
     
             if ($result) {
@@ -98,7 +94,7 @@ class WikiController {
 
     public function getAllWikis() {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            // Call the wiki service to get all wikis
+          
             $wikis = $this->wikiService->getAllWikis();
 
             echo json_encode(['status' => 'success', 'data' => $wikis]);
@@ -107,8 +103,6 @@ class WikiController {
 }
 
 $wikiController = new WikiController();
-
-// Handle different actions based on the request method
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         if ($_POST['action'] === 'createWiki') {

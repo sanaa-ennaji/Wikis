@@ -1,6 +1,6 @@
 <?php
 require_once '../models/Database.php';
-require_once '../models/Wiki.php';
+require_once '../models/wikis.php';
 require_once 'InterfaceWiki.php';
 
 class ServiceWiki implements InterfaceWiki {
