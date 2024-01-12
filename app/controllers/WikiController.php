@@ -158,5 +158,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
 }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Instead of echoing HTML directly, return a JSON response
+echo json_encode(['status' => 'error', 'message' => 'Wiki creation failed']);
+
 ?>
 
