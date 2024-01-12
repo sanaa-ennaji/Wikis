@@ -6,6 +6,7 @@ interface  InterfaceUser {
     public function loginUser($email, $pass);
     public function getAllUsers();
     public function getLoggedInUserId();
+    public function  getUserById($userId) ;
     
 }
 

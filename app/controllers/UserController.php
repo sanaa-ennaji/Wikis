@@ -76,6 +76,23 @@ class UserController {
             echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
         }
     }
+
+    public function getUserById() {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            // Call the user service to get the user by ID
+            $user = $this->userService->getUserById($id);
+
+            if ($user) {
+                echo json_encode(['status' => 'success', 'data' => $user]);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'User not found']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method or ID not provided']);
+        }
+    }
 }
 
 $userController = new UserController();
@@ -95,6 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['getAllUsers'])) {
         $userController->getAllUsers();
+    } elseif (isset($_GET['getUserById'])) {
+        $userController->getUserById();
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid action']);
     }

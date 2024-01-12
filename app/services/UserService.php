@@ -65,5 +65,22 @@ class UserService implements  InterfaceUser {
             return null;
         }
     }
+    public function getUserById($userId) {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE id_user = ?");
+            $stmt->execute([$userId]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user) {
+                $userData = new User($user['name_user'], $user['email'], $user['mot_de_passe'], $user['role']);
+                $userData->setId($user['id_user']);
+                return $userData;
+            } else {
+                return null;
+            }
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
 }
 ?>

@@ -44,12 +44,7 @@
             var wikisContainer = $('#wikisContainer');
 
             wikis.forEach(function (wiki) {
-                // Assuming the properties are 'id_auteur' and 'id_categorie'
-                var author = wiki.id_auteur; 
-                var category = wiki.id_categorie;
-
-                // Check if 'tags' is defined and is an array
-                var tags = Array.isArray(wiki.tags) ? wiki.tags.join(', ') : '';
+                var tags = wiki.tags ? wiki.tags.join(', ') : 'No tags available';
 
                 var wikiCard = `
                     <div class="col-md-4 mb-4">
@@ -57,8 +52,8 @@
                             <img src="${wiki.image_url}" class="card-img-top" alt="Wiki Image">
                             <div class="card-body">
                                 <h5 class="card-title">${wiki.titre}</h5>
-                                <p class="card-text">Author: ${author}</p>
-                                <p class="card-text">Category: ${category}</p>
+                                <p class="card-text">Author: ${wiki.auteur}</p>
+                                <p class="card-text">Category: ${wiki.categorie}</p>
                                 <p class="card-text">Tags: ${tags}</p>
                             </div>
                         </div>
@@ -70,6 +65,7 @@
         }
     });
 </script>
+
 
 
 

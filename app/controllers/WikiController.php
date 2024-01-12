@@ -41,26 +41,32 @@ class WikiController {
         }
     }
 
-    public function getWikiById() {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-            $id = $_GET['id'];
+   public function getWikiById() {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-            // Call the wiki service to get the wiki by ID
-            $wiki = $this->wikiService->getWikiById($id);
+        // Call the wiki service to get the wiki by ID
+        $wiki = $this->wikiService->getWikiById($id);
 
-            if ($wiki) {
-                $author = $this->userService->getUserById($wiki['id_auteur']);
-                $category = $this->categoryService->getCategoryById($wiki['id_categorie']);
+        if ($wiki) {
+            // Fetch the author using the getUserById method
+            $author = $this->userService->getUserById($wiki['id_auteur']);
+            
+            // Fetch the category using the getCategoryById method (assuming you have a similar method in your CategoryService)
+            $category = $this->categoryService->getCategoryById($wiki['id_categorie']);
 
-                $wiki['auteur'] = $author['nom']; 
-                $wiki['categorie'] = $category['nom']; 
+            // Add author and category information to the wiki data
+            $wiki['auteur'] = ($author) ? $author->getNom() : 'Unknown Author';
 
-                echo json_encode(['status' => 'success', 'data' => $wiki]);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Wiki not found']);
-            }
+            $wiki['categorie'] = ($category) ? $category['nom_categorie'] : 'Unknown Category';
+
+            echo json_encode(['status' => 'success', 'data' => $wiki]);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Wiki not found']);
         }
     }
+}
+
 
 
     public function updateWiki() {
