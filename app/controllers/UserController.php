@@ -37,7 +37,7 @@ class UserController {
 
     public function loginUser() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate input (you can add more validation as needed)
+           
             $email = $_POST['email'];
             $pass = $_POST['pass'];
 
@@ -46,11 +46,11 @@ class UserController {
                 return;
             }
 
-            // Call the user service to authenticate the user
+         
             $user = $this->userService->loginUser($email, $pass);
 
             if ($user) {
-                // Start a session and store user information
+               
                 session_start();
                 $_SESSION['user'] = $user;
 

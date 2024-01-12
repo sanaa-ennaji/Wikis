@@ -19,7 +19,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return $this->getWikiById($id_categorie);
+            return $this->getWikiById($this->db->lastInsertId());
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -49,7 +49,7 @@ class ServiceWiki implements InterfaceWiki {
 
         try {
             $this->db->execute();
-            return $this->getWikiById($id); 
+            return $this->getWikiById($id);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -79,5 +79,4 @@ class ServiceWiki implements InterfaceWiki {
         }
     }
 }
-
 ?>
