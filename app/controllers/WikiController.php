@@ -115,13 +115,23 @@ class WikiController {
     
 
     public function getAllWikis() {
+         header('Content-Type: application/json'); // Add this line
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-          
             $wikis = $this->wikiService->getAllWikis();
-
+    
+          
+            foreach ($wikis as &$wiki) {
+                $author = $this->userService->getUserById($wiki['id_auteur']);
+                $category = $this->categoryService->getCategoryById($wiki['id_categorie']);
+    
+                $wiki['auteur'] = ($author) ? $author->getNom() : 'Unknown Author';
+                $wiki['categorie'] = ($category) ? $category['nom_categorie'] : 'Unknown Category';
+            }
+    
             echo json_encode(['status' => 'success', 'data' => $wikis]);
         }
     }
+    
 }
 
 $wikiController = new WikiController();

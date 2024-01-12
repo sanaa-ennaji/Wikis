@@ -23,7 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
     $(document).ready(function () {
-        // Fetch wikis using AJAX
+       
         $.ajax({
             url: '../controllers/WikiController.php?getAllWikis=true',
             type: 'GET',
