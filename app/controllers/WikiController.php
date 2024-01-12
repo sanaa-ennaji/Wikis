@@ -1,27 +1,34 @@
 <?php
 require_once '../services/ServiceWiki.php';
-
+require_once '../controllers/UserController.php';
 class WikiController {
     private $wikiService;
-
+    private $userController;
     public function __construct() {
         $this->wikiService = new ServiceWiki();
+        $this->userController = new UserController();
     }
 
     public function createWiki() {
+        $loggedInUserId = $this->userController->getLoggedInUserId();
+
+        if (!$loggedInUserId) {
+            echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
             $titre = $_POST['titre'];
             $contenu = $_POST['contenu'];
             $image_url = $_POST['image_url'];
-            $id_auteur = $_POST['id_auteur'];
             $id_categorie = $_POST['id_categorie'];
 
-            if (empty($titre) || empty($contenu) || empty($image_url) || empty($id_auteur) || empty($id_categorie)) {
+            if (empty($titre) || empty($contenu) || empty($image_url) || empty($id_categorie)) {
                 echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
                 return;
             }
-            $wiki = $this->wikiService->createWiki($titre, $contenu, $image_url, $id_auteur, $id_categorie);
+
+            $wiki = $this->wikiService->createWiki($titre, $contenu, $image_url, $loggedInUserId, $id_categorie);
 
             if ($wiki) {
                 echo json_encode(['status' => 'success', 'message' => 'Wiki created successfully', 'data' => $wiki]);
@@ -30,6 +37,28 @@ class WikiController {
             }
         }
     }
+    // public function createWiki() {
+    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+    //         $titre = $_POST['titre'];
+    //         $contenu = $_POST['contenu'];
+    //         $image_url = $_POST['image_url'];
+    //         $id_auteur = $_POST['id_auteur'];
+    //         $id_categorie = $_POST['id_categorie'];
+
+    //         if (empty($titre) || empty($contenu) || empty($image_url) || empty($id_auteur) || empty($id_categorie)) {
+    //             echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
+    //             return;
+    //         }
+    //         $wiki = $this->wikiService->createWiki($titre, $contenu, $image_url, $id_auteur, $id_categorie);
+
+    //         if ($wiki) {
+    //             echo json_encode(['status' => 'success', 'message' => 'Wiki created successfully', 'data' => $wiki]);
+    //         } else {
+    //             echo json_encode(['status' => 'error', 'message' => 'Wiki creation failed']);
+    //         }
+    //     }
+    // }
 
     public function getWikiById() {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {

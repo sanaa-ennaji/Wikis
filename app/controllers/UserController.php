@@ -11,7 +11,6 @@ class UserController {
 
     public function registerUser() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate input (you can add more validation as needed)
             $nom = $_POST['nom'];
             $email = $_POST['email'];
             $pass = $_POST['pass'];
@@ -37,7 +36,6 @@ class UserController {
 
     public function loginUser() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           
             $email = $_POST['email'];
             $pass = $_POST['pass'];
 
@@ -45,8 +43,6 @@ class UserController {
                 echo json_encode(['status' => 'error', 'message' => 'Email and password are required']);
                 return;
             }
-
-         
             $user = $this->userService->loginUser($email, $pass);
 
             if ($user) {
@@ -61,14 +57,23 @@ class UserController {
         }
     }
 
-    
-
     public function getAllUsers() {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $users = $this->userService->getAllUsers();
             echo json_encode(['data' => $users]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+        }
+    }
+
+
+    public function getLoggedInUserId() {
+        session_start();
+    
+        if (isset($_SESSION['user']['id'])) {
+            echo json_encode(['status' => 'success', 'data' => ['loggedInUserId' => $_SESSION['user']['id']]]);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
         }
     }
 }

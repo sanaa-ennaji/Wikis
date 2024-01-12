@@ -11,7 +11,7 @@
 <h2>User Registration</h2>
 
 <form action="../controllers/UserController.php" method="post">
-    <!-- User Registration Form -->
+
     <label for="nom">Name:</label>
     <input type="text" id="nom" name="nom" required><br>
 

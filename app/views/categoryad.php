@@ -11,12 +11,11 @@
 
 <body>
 
-<!-- Add Category Button -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
     Add Category
 </button>
 
-<!-- Table to display categories -->
+
 <table id="categoriesTable" class="table">
     <thead>
         <tr>
@@ -26,11 +25,11 @@
         </tr>
     </thead>
     <tbody>
-        <!-- Categories data will be populated here -->
+    
     </tbody>
 </table>
 
-<!-- Add Category Modal -->
+
 <div class="modal" id="addCategoryModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -41,7 +40,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Form for adding a new category -->
+             
                 <form id="addCategoryForm">
                     <div class="form-group">
                         <label for="categoryName">Category Name:</label>
@@ -69,13 +68,13 @@
 
 <script>
     $(document).ready(function() {
-        // DataTable initialization
+
         $('#categoriesTable').DataTable({
             ajax: {
                 url: '../controllers/CategoryController.php?getAllCategories',
                 type: 'GET',
                 dataType: 'json',
-                dataSrc: 'data', // Adjust to match the key in your response
+                dataSrc: 'data', 
             },
             columns: [
                 { data: 'id_categorie' },
@@ -90,14 +89,14 @@
             ]
         });
 
-        // Add Category Form Submission
+
         $('#addCategoryForm').submit(function(event) {
             event.preventDefault();
 
-            // Get category name from the form
+       
             var categoryName = $('#categoryName').val();
 
-            // Implement your logic to add a category using AJAX
+         
             $.ajax({
                 url: '../controllers/CategoryController.php?createCategory',
                 method: 'POST',
@@ -108,34 +107,33 @@
                 },
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Category added successfully
+                      
                         console.log(response.message);
 
                         // Close the modal
                         $('#addCategoryModal').modal('hide');
 
-                        // Reload DataTable to update the table
                         $('#categoriesTable').DataTable().ajax.reload();
                     } else {
-                        // Handle errors if needed
+                       
                         console.error(response.message);
                     }
                 },
                 error: function(xhr, status, error) {
-                    // Handle AJAX errors
+                 
                     console.error(error);
                 }
             });
         });
 
-        // Example functions for editing and deleting categories
+      
         function editCategory(categoryId) {
-            // Implement your edit logic here
+     
             console.log('Edit category with ID: ' + categoryId);
         }
 
         function deleteCategory(categoryId) {
-            // Implement your delete logic here
+         
             console.log('Delete category with ID: ' + categoryId);
         }
     });

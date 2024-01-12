@@ -56,5 +56,14 @@ class UserService implements  InterfaceUser {
             return [];
         }
     }
+    public function getLoggedInUserId() {
+        session_start();
+
+        if (isset($_SESSION['user']['id'])) {
+            return $_SESSION['user']['id'];
+        } else {
+            return null;
+        }
+    }
 }
 ?>
