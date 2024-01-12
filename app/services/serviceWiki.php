@@ -1,24 +1,21 @@
 <?php
+require_once '../models/Database.php';
+require_once '../models/Wiki.php';
+require_once 'InterfaceWiki.php';
 
 class ServiceWiki implements InterfaceWiki {
     private $db;
 
     public function __construct()
     {
-        $this->db = Database::getInstance(); 
+        $this->db = Database::getInstance()->getConnection(); 
     }
 
     public function createWiki($titre, $contenu, $image_url, $id_auteur, $id_categorie) {
-        $createWikiQuery = "INSERT INTO wikis (titre, contenu, image_url, id_auteur, id_categorie) VALUES (:titre, :contenu, :image_url, :id_auteur, :id_categorie)";
-        $this->db->query($createWikiQuery);
-        $this->db->bind(":titre", $titre);
-        $this->db->bind(":contenu", $contenu);
-        $this->db->bind(":image_url", $image_url);
-        $this->db->bind(":id_auteur", $id_auteur);
-        $this->db->bind(":id_categorie", $id_categorie);
-
         try {
-            $this->db->execute();
+            $stmt = $this->db->prepare("INSERT INTO wikis (titre, contenu, image_url, id_auteur, id_categorie) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$titre, $contenu, $image_url, $id_auteur, $id_categorie]);
+
             return $this->getWikiById($this->db->lastInsertId());
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -26,42 +23,32 @@ class ServiceWiki implements InterfaceWiki {
     }
 
     public function getWikiById($id) {
-        $getWikiByIdQuery = "SELECT * FROM wikis WHERE id_wiki = :id";
-        $this->db->query($getWikiByIdQuery);
-        $this->db->bind(":id", $id);
-
         try {
-            return $this->db->single();
+            $stmt = $this->db->prepare("SELECT * FROM wikis WHERE id_wiki = ?");
+            $stmt->execute([$id]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
 
     public function updateWiki($id, $titre, $contenu, $image_url, $id_auteur, $id_categorie) {
-        $updateWikiQuery = "UPDATE wikis SET titre = :titre, contenu = :contenu, image_url = :image_url, id_auteur = :id_auteur, id_categorie = :id_categorie WHERE id_wiki = :id";
-        $this->db->query($updateWikiQuery);
-        $this->db->bind(":id", $id);
-        $this->db->bind(":titre", $titre);
-        $this->db->bind(":contenu", $contenu);
-        $this->db->bind(":image_url", $image_url);
-        $this->db->bind(":id_auteur", $id_auteur);
-        $this->db->bind(":id_categorie", $id_categorie);
-
         try {
-            $this->db->execute();
-            return $this->getWikiById($id);
+            $stmt = $this->db->prepare("UPDATE wikis SET titre = ?, contenu = ?, image_url = ?, id_auteur = ?, id_categorie = ? WHERE id_wiki = ?");
+            $stmt->execute([$titre, $contenu, $image_url, $id_auteur, $id_categorie, $id]);
+
+            return $this->getWikiById($id); 
         } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
 
     public function deleteWiki($id) {
-        $deleteWikiQuery = "DELETE FROM wikis WHERE id_wiki = :id";
-        $this->db->query($deleteWikiQuery);
-        $this->db->bind(":id", $id);
-
         try {
-            $this->db->execute();
+            $stmt = $this->db->prepare("DELETE FROM wikis WHERE id_wiki = ?");
+            $stmt->execute([$id]);
+
             return true;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -69,11 +56,11 @@ class ServiceWiki implements InterfaceWiki {
     }
 
     public function getAllWikis() {
-        $getAllWikisQuery = "SELECT * FROM wikis";
-        $this->db->query($getAllWikisQuery);
-
         try {
-            return $this->db->resultSet();
+            $stmt = $this->db->prepare("SELECT * FROM wikis");
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
