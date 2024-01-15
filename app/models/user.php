@@ -1,58 +1,64 @@
 <?php
 
+
 class User {
-    private $id_user;
-    private $nom;
+    private $fullName;
+    private $username;
     private $email;
-    private $pass;
-    private $role;
-
-    public function __construct($nom, $email, $pass, $role = 'author') {
-        $this->nom = $nom;
+    private $password;
+    // private $pictureUser;
+    
+    public function __construct($fullName,$username,$email,$password){
+        $this->fullName = $fullName;
+        $this->username = $username;
         $this->email = $email;
-        $this->passe = $pass;
-        $this->role = $role;
+        $this->password = $password;
+        // $this->pictureUser = $pictureUser;
+        
     }
 
-    public function getId(){
-        return $this->id_user;
+    // getters and setters fullName
+    public function getFullName(){
+        return $this->fullName;
     }
 
-    public function getNom(){
-        return $this->nom;
+    public function setFullName($fullName){
+        $this->fullName = $fullName;
     }
 
+    // getters and setters username
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function setUsername($username){
+        $this->username = $username;
+    }
+
+    // getters and setters email
     public function getEmail(){
         return $this->email;
-    }
-
-    public function getMotDePasse(){
-        return $this->pass;
-    }
-
-    public function getRole(){
-        return $this->role;
-    }
-
-    public function setId($id_user){
-        $this->id_user = $id_user;
-    }
-
-    public function setNom($nom){
-        $this->nom = $nom;
     }
 
     public function setEmail($email){
         $this->email = $email;
     }
-
-    public function setMotDePasse($pass){
-        $this->pass = $pass;
+   // getters and setters password
+    public function getPassword(){
+        return $this->password;
+    }
+    public function setPassword($password){
+         $this->password = $password;
     }
 
-    public function setRole($role){
-        $this->role = $role;
-    }
+    // getters and setters pictureUser
+    // public function getPictureUser(){
+    //     return $this->pictureUser;
+    // }
+
+    // public function setPictureUser($pictureUser){
+    //     $this->pictureUser = $pictureUser;
+    // }
 }
 
 ?>

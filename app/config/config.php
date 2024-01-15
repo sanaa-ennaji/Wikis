@@ -3,7 +3,7 @@
 define('HOST', 'localhost');
 define('USER' ,'root');
 define('PASS','new_password');
-define('DB', 'wikis');
+define('DB', 'wiki');
 
 // define('APPROOT',dirname(dirname(__FILE__)));
 

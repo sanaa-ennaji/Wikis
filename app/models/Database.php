@@ -1,10 +1,10 @@
 <?php
-require '../config/config.php';
+// require '../config/config.php';
 class Database {
-  private $host = HOST;
-  private $user = USER;
-  private $password = PASS ;
-  private $dbname = DB ;
+  private $host ='localhost' ;
+  private $user = 'root';
+  private $password = 'new_password' ;
+  private $dbname = 'wiki' ;
 
  private static $instance;
  protected $pdo;

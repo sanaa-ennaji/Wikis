@@ -1,28 +1,55 @@
 <?php
 
-class Category {
-    private $id_categorie;
-    private $nom_categorie;
+class Category{
+    private $idCategory;
+    private $nameCategory;
+    private $description;
+    private $pictureCategory;
 
-    public function __construct($nom_categorie) {
-        $this->nom_categorie = $nom_categorie;
+    public function __construct( $nameCategory, $description, $pictureCategory){
+        $this->nameCategory = $nameCategory;
+        $this->description = $description;
+        $this->pictureCategory = $pictureCategory;
+
     }
 
-    public function getId(){
-        return $this->id_categorie;
+    // getters and setters idCategory
+    public function getIdCategory(){
+        return $this->idCategory;
     }
 
-    public function getNomCategorie(){
-        return $this->nom_categorie;
+    public function setIdCategory($idCategory){
+        $this->idCategory = $idCategory;
     }
 
-    public function setId($id_categorie){
-        $this->id_categorie = $id_categorie;
+     // getters and setters nameCategory
+     public function getNameCategory(){
+        return $this->nameCategory;
     }
 
-    public function setNomCategorie($nom_categorie){
-        $this->nom_categorie = $nom_categorie;
+    public function setNameCategory($nameCategory){
+        $this->nameCategory = $nameCategory;
+    }
+
+     // getters and setters description
+     public function getDescription(){
+        return $this->description;
+    }
+
+    public function setDescription($description){
+        $this->description = $description;
+    }
+
+       // getters and setters pictureCategory
+       public function getPictureCategory(){
+        return $this->pictureCategory;
+    }
+
+    public function setPictureCategory($pictureCategory){
+        $this->pictureCategory = $pictureCategory;
     }
 }
+
+
 
 ?>

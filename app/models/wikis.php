@@ -1,77 +1,125 @@
 <?php
 
-class Wiki {
-    private $id_wiki;
-    private $titre;
-    private $contenu;
-    private $image_url;
-    private $date_creation;
-    private $id_auteur;
-    private $id_categorie;
+class Wiki{
+    private $idWiki;
+    private $title;
+    private $content;
+    private $summarize;
+    private $dateCreated;
+    private $dateModified;
+    private $archived;
+    private $pictureWiki;
+    private $idCategory;
+    private $idUser;
 
-    public function __construct($titre, $contenu, $image_url, $id_auteur, $id_categorie) {
-        $this->titre = $titre;
-        $this->contenu = $contenu;
-        $this->image_url = $image_url;
-        $this->id_auteur = $id_auteur;
-        $this->id_categorie = $id_categorie;
+    public function __construct($title, $content, $summarize, $dateCreated, $dateModified, $pictureWiki, $idCategory, $idUser){
+        $this->title = $title;
+        $this->content = $content;
+        $this->summarize = $summarize;
+        $this->dateCreated = $dateCreated;
+        $this->dateModified = $dateModified;
+       
+        $this->pictureWiki = $pictureWiki;
+        $this->idCategory = $idCategory;
+        $this->idUser = $idUser;
     }
 
-    public function getId(){
-        return $this->id_wiki;
+      // Getter et Setter pour idWiki
+      public function getIdWiki() {
+        return $this->idWiki;
     }
 
-    public function getTitre(){
-        return $this->titre;
+    public function setIdWiki($idWiki) {
+        $this->idWiki = $idWiki;
     }
 
-    public function getContenu(){
-        return $this->contenu;
+    // Getter et Setter pour title
+    public function getTitle() {
+        return $this->title;
     }
 
-    public function getImageUrl(){
-        return $this->image_url;
+    public function setTitle($title) {
+        $this->title = $title;
     }
 
-    public function getDateCreation(){
-        return $this->date_creation;
+    // Getter et Setter pour content
+    public function getContent() {
+        return $this->content;
     }
 
-    public function getIdAuteur(){
-        return $this->id_auteur;
+    public function setContent($content) {
+        $this->content = $content;
     }
 
-    public function getIdCategorie(){
-        return $this->id_categorie;
+    // Getter et Setter pour summarize
+    public function getSummarize() {
+        return $this->summarize;
     }
 
-    public function setId($id_wiki){
-        $this->id_wiki = $id_wiki;
+    public function setSummarize($summarize) {
+        $this->summarize = $summarize;
     }
 
-    public function setTitre($titre){
-        $this->titre = $titre;
+    // Getter et Setter pour dateCreated
+    public function getDateCreated() {
+        return $this->dateCreated;
     }
 
-    public function setContenu($contenu){
-        $this->contenu = $contenu;
+    public function setDateCreated($dateCreated) {
+        $this->dateCreated = $dateCreated;
     }
 
-    public function setImageUrl($image_url){
-        $this->image_url = $image_url;
+    // Getter et Setter pour dateModified
+    public function getDateModified() {
+        return $this->dateModified;
     }
 
-    public function setDateCreation($date_creation){
-        $this->date_creation = $date_creation;
+    public function setDateModified($dateModified) {
+        $this->dateModified = $dateModified;
     }
 
-    public function setIdAuteur($id_auteur){
-        $this->id_auteur = $id_auteur;
+    // Getter et Setter pour archived
+    public function getArchived() {
+        return $this->archived;
     }
 
-    public function setIdCategorie($id_categorie){
-        $this->id_categorie = $id_categorie;
+    public function setArchived($archived) {
+        $this->archived = $archived;
+    }
+
+    // Getter et Setter pour pictureWiki
+    public function getPictureWiki() {
+        return $this->pictureWiki;
+    }
+
+    public function setPictureWiki($pictureWiki) {
+        $this->pictureWiki = $pictureWiki;
+    }
+
+    // Getter et Setter pour idCategory
+    public function getIdCategory() {
+        return $this->idCategory;
+    }
+
+    public function setIdCategory($idCategory) {
+        $this->idCategory = $idCategory;
+    }
+
+    // Getter et Setter pour idUser
+    public function getIdUser() {
+        return $this->idUser;
+    }
+
+    public function setIdUser($idUser) {
+        $this->idUser = $idUser;
     }
 }
+
+
+
+
+
+
+
 
 ?>

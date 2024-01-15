@@ -1,28 +1,34 @@
 <?php
 
-class Tags {
-    private $ID_tag;
-    private $nom_tag;
+class Tag{
+    
+    private $idTag;
+    private $nameTag;
 
-    public function __construct($nom_tag) {
-        $this->nom_tag = $nom_tag;
+    public function __construct($nameTag){
+        $this->nameTag = $nameTag;
     }
 
-    public function getId(){
-        return $this->ID_tag;
+    // getter and setter for the idTg
+    public function getIdTag(){
+        return $this->idTag;
     }
 
-    public function getName(){
-        return $this->nom_tag;
+    public function setIdTag($idTag){
+        $this->idTag = $idTag;
+    }
+    // getter and setter for the name tag
+    public function getNameTag(){
+        return $this->nameTag;
     }
 
-    public function setId($ID_tag){
-        $this->ID_tag = $ID_tag;
-    }
-
-    public function setName($nom_tag){
-        $this->nom_tag = $nom_tag;
+    public function setNameTag($nameTag){
+        $this->nameTag = $nameTag;
     }
 }
+
+
+
+
 
 ?>

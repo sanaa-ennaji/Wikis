@@ -1,29 +1,32 @@
 <?php
 
-class WikiTag {
-    private $id_wiki;
-    private $id_tag;
+class TagOfWiki{
+    private $idTag;
+    private $idWiki;
 
-    public function __construct($id_wiki, $id_tag) {
-        $this->id_wiki = $id_wiki;
-        $this->id_tag = $id_tag;
+    public function __construct($idTag,$idWiki){
+        $this->idTag = $idTag;
+        $this->idWiki = $idWiki;
     }
 
-    public function getIdWiki(){
-        return $this->id_wiki;
+      // Getter et Setter pour $idTag
+      public function getIdTag() {
+        return $this->idTag;
     }
 
-    public function getIdTag(){
-        return $this->id_tag;
+    public function setIdTag($idTag) {
+        $this->idTag = $idTag;
     }
 
-    public function setIdWiki($id_wiki){
-        $this->id_wiki = $id_wiki;
+    // Getter et Setter pour $idWiki
+    public function getIdWiki() {
+        return $this->idWiki;
     }
 
-    public function setIdTag($id_tag){
-        $this->id_tag = $id_tag;
+    public function setIdWiki($idWiki) {
+        $this->idWiki = $idWiki;
     }
 }
+
 
 ?>
