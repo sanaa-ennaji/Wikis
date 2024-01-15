@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $serviceTag = new serviceTag();
     $serviceTag->addTag($tag);
     
-    header('location: ../../views/admin/displayTag.php');
+    header('location: ../../views/admin/tag.php');
     
     }catch(PDOException $e){
         

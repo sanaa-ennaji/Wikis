@@ -1,39 +1,66 @@
 <?php
 require_once '../../controllers/wikiController/displayWiki.php';
+require_once '../../controllers/tagController/displayTag.php';
+require_once '../../controllers/categoryController/displayCategory.php';
 ?>
-<!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- ========== Tailwind Css ========  -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- ========== AwesomeFonts Css ========  -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script>
     <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
-</head>
+   <style>
+    nav{
+        background-color: blueviolet;
+        
+    }
+    main{
+        position: absolute;
+        top: 0;
+        right:  0rem;
 
+    }
+   </style>
+</head>
 <body>
 
+<nav class=" shadow-xl h-screen fixed top-0 left-0 min-w-[250px] py-6 font-[sans-serif] overflow-auto">
+      <div class="relative flex flex-col h-full">
+        <a href="../visitor/home.php" class="text-center"><img src="../visitor/w.png" alt="logo"  class='w-[60px] inline'/> 
+        </a>
+        <ul class="space-y-3 my-10 flex-1">
+        
+          <li>
+    <a href="../visitor/wikis.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+        <i class="fas fa-list w-[18px] h-[18px] mr-4"></i>
+        <span>home</span>
+    </a>
+</li>
+<li>
+    <a href="../wikis.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+        <i class="fas fa-book w-[18px] h-[18px] mr-4"></i>
+        <span>Wikis</span>
+    </a>
+</li>
+        </ul>
+        <div class="flex flex-wrap items-center cursor-pointer border-t border-gray-200 px-4 py-4">
+          <img src='https://readymadeui.com/profile.webp' class="w-9 h-9 rounded-full border-white" />
+          <div class="ml-4">
+            <p class="text-sm text-[#333]">author</p>
+            <p class="text-xs text-gray-400 mt-1">free acount</p>
+          </div>
+        </div>
+      </div>
+    </nav>
     <section class="flex items-center relative">
       
-
-        <!-- =========== Content =========== -->
-        <main class="bg-gray-100 flex-grow h-[100vh] relative">
-            <!-- ============== header =========== -->
-            <!--===========Content===========-->
-            <main class="bg-gray-100 flex-grow h-[100vh] relative">
-                <!-- ============== header =========== -->
-
-                <!-- ============ Content ============= -->
-
+    <main class="bg-gray-100 flex-grow h-[100vh] w-[85vw] ">
+        
                 <div class="md:p-6 bg-white md:m-5">
                     <div class="flex items-center justify-between">
                         <div></div>
@@ -168,7 +195,7 @@ require_once '../../controllers/wikiController/displayWiki.php';
                         </table>
                     </div>
 
-                    <!-- Add Wiki Popup -->
+                    <!-- pop up -->
                     <div id="addWikiPopup"
                     class="hidden fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
                      <div class="bg-white w-[500px] p-8 rounded-lg">
@@ -201,7 +228,19 @@ require_once '../../controllers/wikiController/displayWiki.php';
                         ?>
                     </select>
                 </div>
+                <div class="mb-4">
+                     <label for="tags" class="block text-sm font-medium text-gray-600">Sélectionner les tags :</label>
+                     <div class="flex flex-wrap gap-2">
+                         <?php foreach ($TagDatas as $TagData) : ?>
+                         <label class="inline-flex items-center">
+                             <input type="checkbox" name="selectedTags[]" value="<?= $TagData['idTag'] ?>"
+                                 class="form-checkbox h-5 w-5 text-blue-600">
+                             <span class="ml-2 text-gray-700"><?= $TagData['nameTag'] ?></span>
+                         </label>
+                         <?php endforeach; ?>
 
+                     </div>
+                 </div>
     
 
                 <div>
@@ -217,10 +256,9 @@ require_once '../../controllers/wikiController/displayWiki.php';
         </form>
     </div>
 </div>
-                <!-- ============ Content ============= -->
 
             </main>
-            <!-- ========== overlay ================= -->
+        
 
             <script src="https://code.jquery.com/jquery-3.7.1.min.js"
                 integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

@@ -1,5 +1,5 @@
 <?php
-// require '../config/config.php';
+
 class Database {
   private $host ='localhost' ;
   private $user = 'root';
@@ -18,7 +18,7 @@ private function __construct() {
         die("Connection failed: " . $e->getMessage());
     }
 }
-// a function that check if the connection exists or not no matter how object we creat a new object out of class we still get the same connection 
+
 public static function getInstance() {
     if (!self::$instance) {
         self::$instance = new self();

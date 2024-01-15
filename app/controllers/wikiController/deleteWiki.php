@@ -1,8 +1,7 @@
 <?php
 
-require_once(__DIR__. '/../../Services/Interface/WikiInterface.php');
-require_once(__DIR__. '/../../Services/Implimentation/WikiImp.php');
-
+require_once(__DIR__. '/../../Services/interface/interfaceWiki.php');
+require_once(__DIR__.'../../../Services/implementation/serviceWiki.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $idWiki = $_GET['idWiki'];
@@ -16,4 +15,5 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         echo "<script> alert('Data not delete');</script>";
     }
 }
+
 ?>

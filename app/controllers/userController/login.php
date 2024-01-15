@@ -7,8 +7,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
-     // Vérification si les champs sont vides
 
         if (empty($username) || empty($password)) {
             $_SESSION['error'] = 'Veuillez remplir tous les champs.';
@@ -31,8 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header('location:../../views/admin/category.php');
                 exit();
             } else {
-                header('location:../../views/author/navbar.php');
-                // var_dump($roleRow['roleName']);
+                header('location:../../views/author/wikis.php');
                 exit();
             }
             

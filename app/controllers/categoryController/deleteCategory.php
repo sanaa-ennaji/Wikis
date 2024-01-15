@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $result = $deleteCategory->deleteCategory($idCategory);
 
     if($result){
-        header('location:../../views/admin/category/display.php');
+        header('location:../../views/admin/category.php');
     }else{
         echo "<script> alert('Data not delete');</script>";
     }

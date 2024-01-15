@@ -1,9 +1,9 @@
 <nav class=" shadow-xl h-screen fixed top-0 left-0 min-w-[250px] py-6 font-[sans-serif] overflow-auto">
       <div class="relative flex flex-col h-full">
-        <a href="javascript:void(0)" class="text-center"><img src="../w.png" alt="logo"  class='w-[60px] inline'/> <span>wikis</span>
+        <a href="../visitor/home.php" class="text-center"><img src="w.png" alt="logo"  class='w-[60px] inline'/> 
         </a>
         <ul class="space-y-3 my-10 flex-1">
-          <li>
+          <!-- <li>
             <a href="javascript:void(0)"
               class="text-sm flex items-center text-[#007bff] border-r-[5px] border-[#077bff] bg-gray-100 px-8 py-4 transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
@@ -14,37 +14,37 @@
               </svg>
               <span>Dashboard</span>
             </a>
-          </li>
+          </li> -->
           <li>
-    <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+    <a href="../category.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
         <i class="fas fa-list w-[18px] h-[18px] mr-4"></i>
         <span>Category</span>
     </a>
 </li>
 <li>
-    <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+    <a href="../wikis.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
         <i class="fas fa-book w-[18px] h-[18px] mr-4"></i>
         <span>Wikis</span>
     </a>
 </li>
 <li>
-    <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+    <a href="../tags.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
         <i class="fas fa-tags w-[18px] h-[18px] mr-4"></i>
         <span>Tags</span>
     </a>
 </li>
 <li>
-    <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+    <a href="users.php" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
         <i class="fas fa-users w-[18px] h-[18px] mr-4"></i>
         <span>Users</span>
     </a>
 </li>
-<li>
-    <a href="javascript:void(0)" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
+<!-- <li>
+    <a href="#" class="text-[#333] text-sm flex items-center hover:text-[#007bff] hover:border-r-[5px] border-[#077bff] hover:bg-gray-100 px-8 py-4 transition-all">
         <i class="fas fa-archive w-[18px] h-[18px] mr-4"></i>
         <span>Archive</span>
     </a>
-</li>
+</li> -->
         </ul>
         <div class="flex flex-wrap items-center cursor-pointer border-t border-gray-200 px-4 py-4">
           <img src='https://readymadeui.com/profile.webp' class="w-9 h-9 rounded-full border-white" />

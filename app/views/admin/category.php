@@ -7,6 +7,12 @@ require_once '../../controllers/categoryController/displayCategory.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script>
+    <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
     <title>Document</title>
   
    <style>
@@ -16,7 +22,7 @@ require_once '../../controllers/categoryController/displayCategory.php';
     }
     main{
         position: absolute;
-        right:  2rem;
+        right:  0rem;
 
     }
    </style>
@@ -29,7 +35,7 @@ include 'component/sidebar.php';
 
 
 
-<main id="main" class="bg-gray-100 flex-grow h-[100vh] w-[80vw]  ">
+<main id="main" class="bg-gray-100 flex-grow h-[100vh] w-[85vw]  ">
    
 
     <div class="md:p-6 bg-white md:m-5">
@@ -69,13 +75,13 @@ include 'component/sidebar.php';
                                 </div>
                             </td>
                             <td class="sm:text-center text-right">
-                                <button class="bg-green-800 text-white w-[35px] h-[35px] rounded-md">
-                                    <a href="updateCategory.php?idCategory=<?= $CatData['idCategory'];?>">
+                                <button class="bg-purple-700 text-white w-[35px] h-[35px] rounded-md">
+                                    <a href="../../Controllers/categoryController/updateCategory.php?idCategory=<?= $CatData['idCategory'];?>">
                                         <i class="fa-solid fa-pen " style="color:#1D2B53"></i>
                                     </a>
                                 </button>
-                                <button class="bg-green-800 text-white w-[35px] h-[35px] rounded-md">
-                                    <a href="../../../Controllers/CategoryController/deleteCategoryController.php?idCategory=<?= $CatData['idCategory'];?>">
+                                <button class="bg-purple-700 text-white w-[35px] h-[35px] rounded-md">
+                                    <a href="../../Controllers/categoryController/deleteCategory.php?idCategory=<?= $CatData['idCategory'];?>">
                                         <i class="fa-solid fa-trash " style="color:#1D2B53"></i>
                                     </a>
                                 </button>
@@ -117,10 +123,10 @@ include 'component/sidebar.php';
   
 
 </main>
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- <script src="https://cdn.tailwindcss.com"></script>
  <script src="https://kit.fontawesome.com/d0fb25e48c.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script> -->
 
 <script>
     $(document).ready(function () {

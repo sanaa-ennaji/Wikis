@@ -3,9 +3,9 @@
 require_once(__DIR__. '/../../Services/interface/interfaceWiki.php');
 require_once(__DIR__.'../../../Services/implementation/serviceWiki.php');
 
-$displayLastWiki = new serviceWiki();
+$displayWiki = new ServiceWiki();
 
-$WikiDatas = $displayLastWiki->displayLastWiki();
+$WikiDatas = $displayWiki->dispalyNonArchivedWiki();
 
 
 ?>
