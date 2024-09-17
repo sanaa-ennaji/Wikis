@@ -1,6 +1,6 @@
-# Brif10 : setnence croisee Booster 
+# Brif10 : setnence croisee 
 
-**les Performances avec l'Architecture MVC**
+**Booster les Performances avec l'Architecture MVC**
 
 Contexte du projet
 Wiki a besoin d'un système de gestionnaire de contenu efficace, associé à un front office, pour offrir une expérience utilisateur exceptionnelle.
